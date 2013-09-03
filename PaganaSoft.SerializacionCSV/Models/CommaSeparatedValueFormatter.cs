@@ -33,15 +33,16 @@ namespace PaganaSoft.SerializacionCSV.Models
                   this.Context);
             var Datos = FormatterServices.GetObjectData(graph, Campos);
             StreamWriter sw = new StreamWriter(serializationStream);
-            //sw.WriteLine("@ClassName={0}", graph.GetType().FullName);
-            
-            for (int i = 0; i < Campos.Length; i++)
+
+            for (int i = 0; i < Campos.Length - 1; i++)
             {
                 sw.Write("{0}{1}", Datos[i].ToString(), CSV_SEPARATOR);
             }
+            sw.Write("{0}", Datos[Datos.Length - 1].ToString());
+            sw.WriteLine();
             sw.Close();
-        }      
-       
+        }
+
 
         #endregion
     }

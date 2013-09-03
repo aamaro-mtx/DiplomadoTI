@@ -51,5 +51,15 @@ namespace PaganaSoft.SerializacionCSV
             fs.Close();
 
         }
+
+        private void bnt_Serializar(object sender, RoutedEventArgs e)
+        {
+            Serializar();
+        }
+
+        private void btn_DeSerializar(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
