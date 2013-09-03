@@ -10,6 +10,7 @@ namespace PaganaSoft.SerializacionCSV.Models
 {
     public class CommaSeparatedValueFormatter : IFormatter
     {
+        private const string CSV_SEPARATOR = ",";
         public CommaSeparatedValueFormatter()
         {
             this.Context = new StreamingContext(StreamingContextStates.All);
@@ -32,10 +33,11 @@ namespace PaganaSoft.SerializacionCSV.Models
                   this.Context);
             var Datos = FormatterServices.GetObjectData(graph, Campos);
             StreamWriter sw = new StreamWriter(serializationStream);
-            sw.WriteLine("@ClassName={0}", graph.GetType().FullName);
+            //sw.WriteLine("@ClassName={0}", graph.GetType().FullName);
+            
             for (int i = 0; i < Campos.Length; i++)
             {
-                sw.WriteLine("{0}={1}", Campos[i].Name, Datos[i].ToString());
+                sw.Write("{0}{1}", Datos[i].ToString(), CSV_SEPARATOR);
             }
             sw.Close();
         }      

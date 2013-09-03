@@ -1,6 +1,9 @@
-﻿using System;
+﻿using PaganaSoft.SerializacionCSV.Models;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -23,6 +26,30 @@ namespace PaganaSoft.SerializacionCSV
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Serializar();
+        }
+
+        private void Serializar()
+        {
+            var prod = new Product()
+            {
+                ID = 1,
+                Nombre = "Refresco 2L",
+                Marca = "Coca-Cola",
+                Cantidad = 25,
+                UnidadDeMedida = "Litro",
+                PrecioUnitario = 25
+            };
+
+            IFormatter formater = new CommaSeparatedValueFormatter();
+            FileStream fs = File.Create(@"c:\tmp\producto.csv");
+            formater.Serialize(fs, prod);
+            fs.Close();
+
         }
     }
 }
