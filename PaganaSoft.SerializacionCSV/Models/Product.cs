@@ -15,10 +15,10 @@ namespace PaganaSoft.SerializacionCSV.Models
 
         }
         public int ID { get; set; }
-        public string Name { get; set; }
-        public string Brand { get; set; }
+        public string Nombre { get; set; }
+        public string Marca { get; set; }
         public int Cantidad { get; set; }
-        public string Unit { get; set; }
-        public decimal UnitPrice { get; set; }
+        public string UnidadDeMedida { get; set; }
+        public decimal PrecioUnitario { get; set; }
     }
 }
