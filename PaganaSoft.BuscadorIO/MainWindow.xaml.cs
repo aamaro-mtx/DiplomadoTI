@@ -20,7 +20,7 @@ using PaganaSoft.BuscadorIO.ViewModels;
 
 namespace PaganaSoft.BuscadorIO
 {
-    public partial class MainWindow : Window, INotifyPropertyChanged
+    public partial class MainWindow : Window
     {
         public MainWindow()
         {
@@ -51,11 +51,6 @@ namespace PaganaSoft.BuscadorIO
             }
             
         }
-
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            MyViewModel = new DefaultViewModel();
-            this.DataContext = MyViewModel;
-        }     
+    
     }
 }

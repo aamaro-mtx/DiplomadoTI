@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PaganaSoft.BuscadorIO.Models
 {
-    public class FoundFile:BindableBase
+    public class FoundFile : BindableBase
     {
         private int _linenumber;
         public int LineNumber

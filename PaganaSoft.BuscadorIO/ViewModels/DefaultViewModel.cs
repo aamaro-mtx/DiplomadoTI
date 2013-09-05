@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PaganaSoft.BuscadorIO.ViewModels
 {
-    public class DefaultViewModel :BindableBase
+    public class DefaultViewModel : BindableBase
     {
         public DefaultViewModel()
         {
