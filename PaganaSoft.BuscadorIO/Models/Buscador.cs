@@ -10,16 +10,16 @@ namespace PaganaSoft.BuscadorIO.Models
 {
     public class Buscador
     {
-        public void Search(string path, bool? all = null)
+        public void Search(string path,string parameter, bool? all = null)
         {
             if (all.HasValue)
-                RecursiveSearch(path);
+                RecursiveSearch(path,parameter);
             else
-                SearchString(path);
+                SearchString(path,parameter);
             
         }
 
-     private  void RecursiveSearch(string sDir)
+     private  void RecursiveSearch(string sDir,string parameter)
         {
             try
             {
@@ -28,18 +28,18 @@ namespace PaganaSoft.BuscadorIO.Models
                     foreach (string f in Directory.GetFiles(d))
                     {
                         //Debug.WriteLine("{0}",f);
-                        SearchString(f);
+                        SearchString(f,parameter);
                     }
-                    RecursiveSearch(d);
+                    RecursiveSearch(d,parameter);
                 }
             }
-            catch (System.Exception excpt)
+            catch (System.Exception ex)
             {
-                Console.WriteLine(excpt.Message);
+                Debug.WriteLine("Exception {0}", ex.Message);
             }
         }
         
-        private void SearchString (string path)
+        private void SearchString (string path,string parameter)
         {
             //DirSearch(path);
             //int noLine = 0;

@@ -8,6 +8,8 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using FolBrowDia = System.Windows.Forms.FolderBrowserDialog;
+using Result = System.Windows.Forms.DialogResult;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -29,7 +31,25 @@ namespace PaganaSoft.BuscadorIO
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Buscador bus = new Buscador();
-            bus.SearchString(@"C:\Users\Abel\Documents");
+            
+            //bus.SearchString(@"C:\Users\Abel\Documents");
+        }
+
+        private void btnSelPathClick(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                FolBrowDia dlg = new FolBrowDia();   
+                if (dlg.ShowDialog() == Result.OK)
+                {
+                    txtPath.Text = dlg.SelectedPath;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Se ha producido un error: " + ex.Message);
+            }
+            
         }
     }
 }

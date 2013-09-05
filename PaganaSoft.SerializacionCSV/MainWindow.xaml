@@ -38,9 +38,5 @@
         <TextBox Margin="218,273,0,0"   Width="67"/>
         <Button Click="bnt_Serializar" Content="Serializar" HorizontalAlignment="Left" Margin="109,321,0,98.4"  Width="92" Height="51"/>
         <Button Click="btn_DeSerializar" Content="DeSerializar" HorizontalAlignment="Left" Margin="218,321,0,98.4"  Width="92" Height="51"/>
-
-
-
-
     </Grid>
 </Window>
