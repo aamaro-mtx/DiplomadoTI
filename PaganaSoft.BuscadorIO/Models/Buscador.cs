@@ -10,43 +10,73 @@ namespace PaganaSoft.BuscadorIO.Models
 {
     public class Buscador
     {
-        public void SearchString (string path)
+        public void Search(string path, bool? all = null)
         {
-            int noLine = 0;
-            int noColum = 0;
-            //if (!File.Exists(path))
-            //{
-            //    // Create a file to write to.
-            //    using (StreamWriter sw = File.CreateText(path))
-            //    {
-            //        sw.WriteLine("Hello");
-            //        sw.WriteLine("And");
-            //        sw.WriteLine("Welcome");
-            //    }
-            //}
-
-            // Open the file to read from.
+            if (all.HasValue)
+                RecursiveSearch(path);
+            else
+                SearchString(path);
             
-            path = @"C:\tmp\output.txt";
-            using (StreamReader sr = File.OpenText(path))
+        }
+
+     private  void RecursiveSearch(string sDir)
+        {
+            try
             {
-                string s = "";
-                while ((s = sr.ReadLine()) != null)
+                foreach (string d in Directory.GetDirectories(sDir))
                 {
-                    noLine++;
-                    noColum= s.IndexOf("hola");
-                    Debug.WriteLine("{0}{1}", noLine, noColum);
+                    foreach (string f in Directory.GetFiles(d))
+                    {
+                        //Debug.WriteLine("{0}",f);
+                        SearchString(f);
+                    }
+                    RecursiveSearch(d);
                 }
-
-
-                //var texto = sr.ReadToEnd();
-                //var var = texto.Split('\n').ToList();
-
-                ////var u = var.SelectMany(a => a.Contains("hola"));
-                //var lista = var.FindAll(a => a.Contains("hola")).ToList();
-                
-                
             }
+            catch (System.Exception excpt)
+            {
+                Console.WriteLine(excpt.Message);
+            }
+        }
+        
+        private void SearchString (string path)
+        {
+            //DirSearch(path);
+            //int noLine = 0;
+            //int noColum = 0;
+            ////if (!File.Exists(path))
+            ////{
+            ////    // Create a file to write to.
+            ////    using (StreamWriter sw = File.CreateText(path))
+            ////    {
+            ////        sw.WriteLine("Hello");
+            ////        sw.WriteLine("And");
+            ////        sw.WriteLine("Welcome");
+            ////    }
+            ////}
+
+            //// Open the file to read from.
+            
+            //path = @"C:\tmp\output.txt";
+            //using (StreamReader sr = File.OpenText(path))
+            //{
+            //    string s = "";
+            //    while ((s = sr.ReadLine()) != null)
+            //    {
+            //        noLine++;
+            //        noColum= s.IndexOf("hola");
+            //        Debug.WriteLine("{0}{1}", noLine, noColum);
+            //    }
+
+
+            //    //var texto = sr.ReadToEnd();
+            //    //var var = texto.Split('\n').ToList();
+
+            //    ////var u = var.SelectMany(a => a.Contains("hola"));
+            //    //var lista = var.FindAll(a => a.Contains("hola")).ToList();
+                
+                
+            //}
         }
     }
 }

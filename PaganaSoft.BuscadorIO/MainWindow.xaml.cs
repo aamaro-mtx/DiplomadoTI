@@ -29,7 +29,7 @@ namespace PaganaSoft.BuscadorIO
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Buscador bus = new Buscador();
-            bus.SearchString("");
+            bus.SearchString(@"C:\Users\Abel\Documents");
         }
     }
 }
