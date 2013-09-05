@@ -10,16 +10,15 @@ namespace PaganaSoft.BuscadorIO.Models
 {
     public class Buscador
     {
-        public void Search(string path,string parameter, bool? all = null)
+        public void Search(string path, string parameter, bool? all = null)
         {
             if (all.HasValue)
-                RecursiveSearch(path,parameter);
+                RecursiveSearch(path, parameter);
             else
-                SearchString(path,parameter);
-            
+                SearchString(path, parameter);
         }
 
-     private  void RecursiveSearch(string sDir,string parameter)
+        private void RecursiveSearch(string sDir, string parameter)
         {
             try
             {
@@ -28,9 +27,9 @@ namespace PaganaSoft.BuscadorIO.Models
                     foreach (string f in Directory.GetFiles(d))
                     {
                         //Debug.WriteLine("{0}",f);
-                        SearchString(f,parameter);
+                        SearchString(f, parameter);
                     }
-                    RecursiveSearch(d,parameter);
+                    RecursiveSearch(d, parameter);
                 }
             }
             catch (System.Exception ex)
@@ -38,8 +37,8 @@ namespace PaganaSoft.BuscadorIO.Models
                 Debug.WriteLine("Exception {0}", ex.Message);
             }
         }
-        
-        private void SearchString (string path,string parameter)
+
+        private void SearchString(string path, string parameter)
         {
             //DirSearch(path);
             //int noLine = 0;
@@ -56,7 +55,7 @@ namespace PaganaSoft.BuscadorIO.Models
             ////}
 
             //// Open the file to read from.
-            
+
             //path = @"C:\tmp\output.txt";
             //using (StreamReader sr = File.OpenText(path))
             //{
@@ -74,8 +73,8 @@ namespace PaganaSoft.BuscadorIO.Models
 
             //    ////var u = var.SelectMany(a => a.Contains("hola"));
             //    //var lista = var.FindAll(a => a.Contains("hola")).ToList();
-                
-                
+
+
             //}
         }
     }

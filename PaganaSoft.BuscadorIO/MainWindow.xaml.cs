@@ -15,24 +15,24 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.ComponentModel;
+using PaganaSoft.BuscadorIO.ViewModels;
 
 namespace PaganaSoft.BuscadorIO
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : Window, INotifyPropertyChanged
     {
         public MainWindow()
         {
             InitializeComponent();
         }
 
+        public DefaultViewModel MyViewModel { get; set; }
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Buscador bus = new Buscador();
-            
-            //bus.SearchString(@"C:\Users\Abel\Documents");
+            bus.Search(txtParameter.Text, txtPath.Text, chkSub.IsChecked);
         }
 
         private void btnSelPathClick(object sender, RoutedEventArgs e)
@@ -51,5 +51,11 @@ namespace PaganaSoft.BuscadorIO
             }
             
         }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            MyViewModel = new DefaultViewModel();
+            this.DataContext = MyViewModel;
+        }     
     }
 }
