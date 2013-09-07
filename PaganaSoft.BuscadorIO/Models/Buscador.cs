@@ -10,9 +10,10 @@ namespace PaganaSoft.BuscadorIO.Models
 {
     public class Buscador
     {
+        public List<FoundFile> Matches { get; set; }
         public void Search(string path, string parameter, bool? all = null)
         {
-            if (all.HasValue)
+            if (all.Value)
                 RecursiveSearch(path, parameter);
             else
                 SearchString(path, parameter);
@@ -40,6 +41,26 @@ namespace PaganaSoft.BuscadorIO.Models
 
         private void SearchString(string path, string parameter)
         {
+            int noLine = 0;
+            string[] lines = File.ReadAllLines(path);
+            FileInfo fileinfo =new FileInfo(path);
+            foreach (var line in lines)
+            {
+                noLine++;
+                if (line.Contains(parameter))
+                {                    
+                    int noCol = line.IndexOf(parameter);
+                    FoundFile found = new FoundFile()
+                    {
+                        FileName = fileinfo.Name,
+                        ColumName = noCol,
+                        LineNumber = noLine,
+                        Text = line
+                    };
+                    Matches.Add(found);
+                }
+
+            }
             //DirSearch(path);
             //int noLine = 0;
             //int noColum = 0;
