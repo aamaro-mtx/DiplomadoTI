@@ -83,6 +83,7 @@
             </Border>
 
         </ListView>
+        <DataGrid Name="dgRes" HorizontalAlignment="Left" Margin="23,164,0,0" VerticalAlignment="Top" Height="44" Width="439"/>
 
     </Grid>
 </Window>

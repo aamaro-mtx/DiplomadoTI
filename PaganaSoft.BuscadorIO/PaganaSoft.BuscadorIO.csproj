@@ -70,7 +70,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\BindableBase.cs" />
-    <Compile Include="Models\Buscador.cs" />
+    <Compile Include="Models\Searcher.cs" />
     <Compile Include="Models\FoundFile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>

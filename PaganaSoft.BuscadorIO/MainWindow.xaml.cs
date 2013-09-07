@@ -31,8 +31,9 @@ namespace PaganaSoft.BuscadorIO
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Buscador bus = new Buscador();            
-            bus.Search(txtPath.Text, txtParameter.Text, chkSub.IsChecked);
+            Searcher searcher = new Searcher();
+            var founds = searcher.Search(txtPath.Text, txtParameter.Text, chkSub.IsChecked);
+            dgRes.ItemsSource = founds;
         }
 
         private void btnSelPathClick(object sender, RoutedEventArgs e)
