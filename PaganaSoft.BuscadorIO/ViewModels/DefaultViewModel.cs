@@ -15,10 +15,11 @@ namespace PaganaSoft.BuscadorIO.ViewModels
             {
                 LineNumber = 12,
                 ColumName = 25,
-                FileName = "nombre de ejemplo",
-                Text = "Este es el texto que debera de tener el archivo"
+                FileName = "Cupcake Ipsum",
+                Text = "Cupcake ipsum dolor. Sit amet tootsie roll lollipop halvah brownie ice cream pastry."
             };
         }
+
 
         private FoundFile _demofile;
         public FoundFile DemoFile
@@ -26,6 +27,7 @@ namespace PaganaSoft.BuscadorIO.ViewModels
             get { return _demofile; }
             set { SetProperty(ref _demofile, value); }
         }
+
 
     }
 }

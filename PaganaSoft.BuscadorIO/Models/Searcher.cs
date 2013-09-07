@@ -10,29 +10,43 @@ namespace PaganaSoft.BuscadorIO.Models
 {
     public class Searcher
     {
+        public Searcher()
+        {
+            Matches = new List<FoundFile>();
+            Key = string.Empty;
+        }
+        public string Key { get; set; }
         public List<FoundFile> Matches { get; set; }
 
-        public List<FoundFile> Search(string path, string parameter, bool? all = null)
+        /// <summary>
+        /// Funcion que busca una cadena especifica dentro de un archivo.
+        /// </summary>
+        /// <param name="path">Ruta del archivo el cual se va a procesar.</param>
+        /// <param name="sKey">Cadena a  buscar dentro del archivo.</param>
+        /// <param name="all">Indica si se analizaran los suddirectorios.</param>
+        /// <returns></returns>
+        public List<FoundFile> Search(string path, string sKey, bool? all = null)
         {
+            Key = sKey;
+            SearchInDirectory(path);
             if (all.Value)
-                RecursiveSearch(path, parameter);
-            else
-                SearchString(path, parameter);
+                RecursiveSearch(path);
+
             return Matches;
         }
 
-        private void RecursiveSearch(string sDir, string parameter)
+        /// <summary>
+        /// Recorre un path especifico en busca de subdirectorios para ser procesados
+        /// </summary>
+        /// <param name="sPathDir">Ruta del archivo el cual se va a procesar.</param>
+        private void RecursiveSearch(string sPathDir)
         {
             try
             {
-                foreach (string d in Directory.GetDirectories(sDir))
+                foreach (string dir in Directory.GetDirectories(sPathDir))
                 {
-                    foreach (string f in Directory.GetFiles(d))
-                    {
-                        //Debug.WriteLine("{0}",f);
-                        SearchString(f, parameter);
-                    }
-                    RecursiveSearch(d, parameter);
+                    SearchInDirectory(dir);
+                    RecursiveSearch(dir);
                 }
             }
             catch (System.Exception ex)
@@ -41,7 +55,23 @@ namespace PaganaSoft.BuscadorIO.Models
             }
         }
 
-        private void SearchString(string path, string parameter)
+        /// <summary>
+        /// Recorre un directorio especifico obteniendo los archivos para ser procesados
+        /// </summary>
+        /// <param name="sPathDir">Ruta del archivo el cual se va a procesar.</param>
+        private void SearchInDirectory(string sPathDir)
+        {
+            foreach (string file in Directory.GetFiles(sPathDir))
+            {
+                SearchString(file);
+            }
+        }
+
+        /// <summary>
+        /// Busca una cadena dentro de un archivo especifico.
+        /// </summary>
+        /// <param name="path">Ruta del archivo el cual se va a procesar.</param>
+        private void SearchString(string path)
         {
             try
             {
@@ -51,9 +81,9 @@ namespace PaganaSoft.BuscadorIO.Models
                 foreach (var line in lines)
                 {
                     noLine++;
-                    if (line.Contains(parameter))
+                    if (line.Contains(Key))
                     {
-                        int noCol = line.IndexOf(parameter);
+                        int noCol = line.IndexOf(Key);
                         FoundFile found = new FoundFile()
                         {
                             FileName = fileinfo.Name,
@@ -67,8 +97,7 @@ namespace PaganaSoft.BuscadorIO.Models
             }
             catch (Exception ex)
             {
-
-                throw;//Debug.WriteLine("Exception {0}", ex.Message);
+                Debug.WriteLine("Exception {0}", ex.Message);
             }
 
         }
