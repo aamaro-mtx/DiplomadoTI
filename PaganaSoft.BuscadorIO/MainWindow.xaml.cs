@@ -31,16 +31,22 @@ namespace PaganaSoft.BuscadorIO
         public DefaultViewModel MyViewModel { get; set; }
 
         private void Button_Click(object sender, RoutedEventArgs e)
-        {                        
-            MyViewModel.Search(txtPath.Text, txtParameter.Text, chkSub.IsChecked);
-            lvwRes.ItemsSource = MyViewModel.FoundsList;            
+        {
+            if (!string.IsNullOrEmpty(txtPath.Text) && !string.IsNullOrEmpty(txtParameter.Text))
+            {
+                MyViewModel.Search(txtPath.Text, txtParameter.Text, chkSub.IsChecked);
+                lvwRes.ItemsSource = MyViewModel.FoundsList;
+                dgRes.ItemsSource = MyViewModel.ErrorsCollection;
+            }
+            else
+                MessageBox.Show("Verifique los parametros");
         }
 
         private void btnSelPathClick(object sender, RoutedEventArgs e)
         {
             try
             {
-                FolBrowDia dlg = new FolBrowDia();   
+                FolBrowDia dlg = new FolBrowDia();
                 if (dlg.ShowDialog() == Result.OK)
                 {
                     txtPath.Text = dlg.SelectedPath;
@@ -50,8 +56,8 @@ namespace PaganaSoft.BuscadorIO
             {
                 MessageBox.Show("Se ha producido un error: " + ex.Message);
             }
-            
+
         }
-    
+
     }
 }

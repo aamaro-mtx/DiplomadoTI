@@ -15,19 +15,18 @@ namespace PaganaSoft.BuscadorIO.ViewModels
             get { return _foundslist; }
             set { SetProperty(ref _foundslist, value); }
         }
-        
+
 
         public DefaultViewModel()
         {
-            this.Errors = new List<ErrorEventArgs>();          
+           
         }
 
-
-        private List<ErrorEventArgs> _errors;
-        public List<ErrorEventArgs> Errors
+        private ErrorsCollection _errorscollection = new ErrorsCollection();
+        public ErrorsCollection ErrorsCollection
         {
-            get { return _errors; }
-            set { _errors = value; }
+            get { return _errorscollection; }
+            set { SetProperty(ref _errorscollection, value); }
         }
 
 
@@ -46,12 +45,12 @@ namespace PaganaSoft.BuscadorIO.ViewModels
             Searcher se = new Searcher();
             se.Error += se_Error;
 
-            Founds = se.Search(path, sKey, all);
+            Founds = se.Search(path, sKey, all);            
             foreach (var f in Founds)
             {
                 FoundsList.Add(f);
             }
-
+            
         }
 
         //public List<FoundFile> Search(string path, string sKey, bool? all = null)
@@ -70,7 +69,7 @@ namespace PaganaSoft.BuscadorIO.ViewModels
 
         void se_Error(object sender, ErrorEventArgs e)
         {
-            this.Errors.Add(e);
+            this.ErrorsCollection.Add(e);
             //throw new Exception(e.Mensaje);
         }
 

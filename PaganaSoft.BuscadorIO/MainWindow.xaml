@@ -61,7 +61,7 @@
         <TextBox Name="txtParameter" Width="333" Margin="117,82,0,0"/>
         <Label Content="Path" Margin="62,28,0,0"/>
         <Label Content="Parametro" Margin="10,70,0,0"/>
-        <TextBox Name="txtPath" Width="272" Margin="117,37,0,0"/>
+        <TextBox Name="txtPath" Width="272" Margin="117,37,0,0" IsReadOnly="True" Cursor="Arrow"/>
         <Button Click="btnSelPathClick" VerticalContentAlignment="Center" 
                 Content="..." HorizontalAlignment="Left" Margin="405,40,0,0"
                 VerticalAlignment="Top" Width="45"/>
@@ -99,7 +99,7 @@
         </ListView>
 
         <DataGrid Foreground="Red" Grid.Row="2" Name="dgRes" HorizontalAlignment="Stretch" 
-                  VerticalAlignment="Top" Height="44"/>
+                  VerticalAlignment="Stretch"/>
 
     </Grid>
 </Window>
