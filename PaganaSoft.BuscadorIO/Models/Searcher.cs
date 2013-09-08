@@ -10,6 +10,7 @@ namespace PaganaSoft.BuscadorIO.Models
 {
     public class Searcher
     {
+        public event ErrorEventHandler Error;
         public Searcher()
         {
             Matches = new List<FoundFile>();
@@ -51,7 +52,8 @@ namespace PaganaSoft.BuscadorIO.Models
             }
             catch (System.Exception ex)
             {
-                Debug.WriteLine("Exception {0}", ex.Message);
+                //Debug.WriteLine("Exception {0}", ex.Message);
+                ThrowError(ex);
             }
         }
 
@@ -61,11 +63,18 @@ namespace PaganaSoft.BuscadorIO.Models
         /// <param name="sPathDir">Ruta del archivo el cual se va a procesar.</param>
         private void SearchInDirectory(string sPathDir)
         {
-            foreach (string file in Directory.GetFiles(sPathDir))
+            try
             {
-                SearchString(file);
+                foreach (string file in Directory.GetFiles(sPathDir))
+                {
+                    SearchString(file);
+                }
             }
-        }
+            catch (Exception ex)
+            {
+                ThrowError(ex);
+            }
+        }       
 
         /// <summary>
         /// Busca una cadena dentro de un archivo especifico.
@@ -97,9 +106,28 @@ namespace PaganaSoft.BuscadorIO.Models
             }
             catch (Exception ex)
             {
-                Debug.WriteLine("Exception {0}", ex.Message);
+                //Debug.WriteLine("Exception {0}", ex.Message);
+                ThrowError(ex);
             }
 
+        }
+        
+        /// <summary>
+        /// Funcion que lanza el evento Error asociado a la clase.
+        /// </summary>
+        /// <param name="ex"></param>
+        private void ThrowError(Exception ex)
+        {
+            if (Error != null)
+            {
+                Error(this,
+                    new ErrorEventArgs()
+                    {
+                        ID = ex.GetHashCode(),
+                        Mensaje = ex.Message,
+                        Source = ex.Source
+                    });
+            }
         }
     }
 }
