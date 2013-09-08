@@ -10,17 +10,12 @@ namespace PaganaSoft.BuscadorIO.ViewModels
     public class DefaultViewModel : BindableBase
     {
         private FoundsCollection _foundslist = new FoundsCollection();
-
         public FoundsCollection FoundsList
         {
             get { return _foundslist; }
             set { SetProperty(ref _foundslist, value); }
         }
-
-
-
-
-
+        
 
         public DefaultViewModel()
         {
@@ -29,7 +24,6 @@ namespace PaganaSoft.BuscadorIO.ViewModels
 
 
         private List<ErrorEventArgs> _errors;
-
         public List<ErrorEventArgs> Errors
         {
             get { return _errors; }
@@ -44,12 +38,7 @@ namespace PaganaSoft.BuscadorIO.ViewModels
             get { return _founds; }
             set { _founds = value; }
         }
-        private FoundFile _demofile;
-        public FoundFile DemoFile
-        {
-            get { return _demofile; }
-            set { SetProperty(ref _demofile, value); }
-        }
+
 
         public void Search(string path, string sKey, bool? all = null)
         {
@@ -82,7 +71,7 @@ namespace PaganaSoft.BuscadorIO.ViewModels
         void se_Error(object sender, ErrorEventArgs e)
         {
             this.Errors.Add(e);
-            throw new Exception(e.Mensaje);
+            //throw new Exception(e.Mensaje);
         }
 
     }

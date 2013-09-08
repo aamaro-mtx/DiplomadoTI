@@ -11,4 +11,8 @@ namespace PaganaSoft.BuscadorIO.Models
     {
 
     }
+
+    public class ErrorsCollection : ObservableCollection<ErrorEventArgs>
+    {
+    }
 }

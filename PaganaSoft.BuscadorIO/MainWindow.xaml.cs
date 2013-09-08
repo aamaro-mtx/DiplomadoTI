@@ -31,8 +31,7 @@ namespace PaganaSoft.BuscadorIO
         public DefaultViewModel MyViewModel { get; set; }
 
         private void Button_Click(object sender, RoutedEventArgs e)
-        {            
-            
+        {                        
             MyViewModel.Search(txtPath.Text, txtParameter.Text, chkSub.IsChecked);
             lvwRes.ItemsSource = MyViewModel.FoundsList;            
         }
