@@ -10,11 +10,11 @@
         </LinearGradientBrush>
     </Window.Background>
     <Grid>
+
         <Grid.DataContext>
             <vm:DefaultViewModel/>
         </Grid.DataContext>
-        <Grid.Resources>
-
+        <Grid.Resources>         
             <Style TargetType="Label">
                 <Setter Property="FontSize" Value="20"/>
                 <Setter Property="HorizontalAlignment" Value="Left"/>
@@ -47,7 +47,16 @@
                 <Setter Property="BorderBrush" Value="Gray"/>
                 <Setter Property="BorderThickness" Value="2"/>
             </Style>
+            
+            <vm:DefaultViewModel x:Key="CollectionVM"/>
+            
         </Grid.Resources>
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
 
         <TextBox Name="txtParameter" Width="333" Margin="117,82,0,0"/>
         <Label Content="Path" Margin="62,28,0,0"/>
@@ -60,12 +69,16 @@
                 VerticalAlignment="Top" Width="90" Click="Button_Click"
                 Height="39"/>
         <CheckBox Name="chkSub" Content="Subdirectorios" HorizontalAlignment="Left" Margin="110,131,0,0" VerticalAlignment="Top" Height="28" Width="101"/>
-        <ListView Margin="0,198,-0.4,0.4">
 
-            <Border DataContext="{Binding DemoFile}">
-                <StackPanel Style="{StaticResource Stack_H}">
-                    <StackPanel >
-                        <TextBlock>
+
+        <!--<ListView Grid.Row="1" ItemsSource="{Binding Source={StaticResource CollectionVM},Path=FoundsList}">-->
+        <ListView Name="lvwRes" Grid.Row="1">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Border>
+                        <StackPanel Style="{StaticResource Stack_H}">
+                            <StackPanel >
+                                <TextBlock>
                            <Bold FontSize="25">Linea</Bold>
                             <LineBreak/>
                             <TextBlock FontSize="20" Text="{Binding LineNumber}"/>
@@ -74,16 +87,19 @@
                             <LineBreak/>
                              <TextBlock FontSize="20" Text="{Binding ColumName}"/>
                         </TextBlock>
-                    </StackPanel>
-                    <StackPanel Style="{StaticResource Stack_V}">
-                        <TextBlock FontSize="25" Text="{Binding FileName}" FontWeight="Bold"/>
-                        <TextBlock FontFamily="20" FontStyle="Italic" Text="{Binding Text}"/>
-                    </StackPanel>
-                </StackPanel>
-            </Border>
+                            </StackPanel>
+                            <StackPanel Style="{StaticResource Stack_V}">
+                                <TextBlock FontSize="25" Text="{Binding FileName}" FontWeight="Bold"/>
+                                <TextBlock FontFamily="25" FontStyle="Italic" Text="{Binding Text}"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                </DataTemplate>
+            </ListView.ItemTemplate>
         </ListView>
-        
-        <DataGrid Name="dgRes" HorizontalAlignment="Left" Margin="23,164,0,0" VerticalAlignment="Top" Height="44" Width="439"/>
+
+        <DataGrid Foreground="Red" Grid.Row="2" Name="dgRes" HorizontalAlignment="Stretch" 
+                  VerticalAlignment="Top" Height="44"/>
 
     </Grid>
 </Window>

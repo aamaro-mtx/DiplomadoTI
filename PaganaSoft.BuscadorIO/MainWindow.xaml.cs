@@ -25,16 +25,16 @@ namespace PaganaSoft.BuscadorIO
         public MainWindow()
         {
             InitializeComponent();
+            MyViewModel = new DefaultViewModel();
         }
 
         public DefaultViewModel MyViewModel { get; set; }
 
         private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            DefaultViewModel defvm = new DefaultViewModel();           
+        {            
             
-            var founds = defvm.Search(txtPath.Text, txtParameter.Text, chkSub.IsChecked);
-            dgRes.ItemsSource = founds;
+            MyViewModel.Search(txtPath.Text, txtParameter.Text, chkSub.IsChecked);
+            lvwRes.ItemsSource = MyViewModel.FoundsList;            
         }
 
         private void btnSelPathClick(object sender, RoutedEventArgs e)

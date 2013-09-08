@@ -9,16 +9,22 @@ namespace PaganaSoft.BuscadorIO.ViewModels
 {
     public class DefaultViewModel : BindableBase
     {
+        private FoundsCollection _foundslist = new FoundsCollection();
+
+        public FoundsCollection FoundsList
+        {
+            get { return _foundslist; }
+            set { SetProperty(ref _foundslist, value); }
+        }
+
+
+
+
+
+
         public DefaultViewModel()
         {
-            this.Errors = new List<ErrorEventArgs>();
-            DemoFile = new FoundFile()
-            {
-                LineNumber = 12,
-                ColumName = 25,
-                FileName = "Cupcake Ipsum",
-                Text = "Cupcake ipsum dolor. Sit amet tootsie roll lollipop halvah brownie ice cream pastry."
-            };
+            this.Errors = new List<ErrorEventArgs>();          
         }
 
 
@@ -31,7 +37,7 @@ namespace PaganaSoft.BuscadorIO.ViewModels
         }
 
 
-        private List<FoundFile> _founds;        
+        private List<FoundFile> _founds;
 
         public List<FoundFile> Founds
         {
@@ -45,17 +51,38 @@ namespace PaganaSoft.BuscadorIO.ViewModels
             set { SetProperty(ref _demofile, value); }
         }
 
-        public List<FoundFile> Search(string path, string sKey, bool? all = null)
+        public void Search(string path, string sKey, bool? all = null)
         {
+            FoundsList.Clear();
             Searcher se = new Searcher();
-            Founds = se.Search(path, sKey, all);
             se.Error += se_Error;
-            return Founds;
+
+            Founds = se.Search(path, sKey, all);
+            foreach (var f in Founds)
+            {
+                FoundsList.Add(f);
+            }
+
         }
+
+        //public List<FoundFile> Search(string path, string sKey, bool? all = null)
+        //{
+        //    Searcher se = new Searcher();
+        //    se.Error += se_Error;
+
+        //    Founds = se.Search(path, sKey, all);
+        //    foreach (var f in Founds)
+        //    {
+        //        FoundsList.Add(f);
+        //    }
+
+        //    return Founds;
+        //}
 
         void se_Error(object sender, ErrorEventArgs e)
         {
             this.Errors.Add(e);
+            throw new Exception(e.Mensaje);
         }
 
     }

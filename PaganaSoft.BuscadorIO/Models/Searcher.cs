@@ -52,7 +52,7 @@ namespace PaganaSoft.BuscadorIO.Models
             }
             catch (System.Exception ex)
             {
-                //Debug.WriteLine("Exception {0}", ex.Message);
+                Debug.WriteLine("Exception {0}", ex.Message);
                 ThrowError(ex);
             }
         }
@@ -72,6 +72,7 @@ namespace PaganaSoft.BuscadorIO.Models
             }
             catch (Exception ex)
             {
+                Debug.WriteLine("Exception {0}", ex.Message);
                 ThrowError(ex);
             }
         }       
@@ -106,7 +107,7 @@ namespace PaganaSoft.BuscadorIO.Models
             }
             catch (Exception ex)
             {
-                //Debug.WriteLine("Exception {0}", ex.Message);
+                Debug.WriteLine("Exception {0}", ex.Message);
                 ThrowError(ex);
             }
 
