@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PaganaSoft.ORM.Models.CodeFirst;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,28 @@ namespace PaganaSoft.ORM
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                using (var ctx = new VientolNorteContexto())
+                {
+                    var c = new Categoria()
+                    {
+                        NombreCategoria = "Bebidas",
+                        Descripcion = "Puras bebidas en esta categoria"
+                    };
+                    ctx.Categorias.Add(c);
+                    ctx.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
         }
     }
 }

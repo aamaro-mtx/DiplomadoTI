@@ -74,9 +74,20 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Migrations\201309190320243_InitialCreate.cs" />
+    <Compile Include="Migrations\201309190320243_InitialCreate.Designer.cs">
+      <DependentUpon>201309190320243_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201309190332338_ActulizarNames.cs" />
+    <Compile Include="Migrations\201309190332338_ActulizarNames.Designer.cs">
+      <DependentUpon>201309190332338_ActulizarNames.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\CodeFirst\Categoria.cs" />
     <Compile Include="Models\Category.cs">
       <DependentUpon>MFNorthwind.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\CodeFirst\VientolNorteContexto.cs" />
     <Compile Include="Models\MFNorthwind.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -95,6 +106,7 @@
     <Compile Include="Models\Product.cs">
       <DependentUpon>MFNorthwind.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\CodeFirst\Producto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -108,6 +120,12 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="Migrations\201309190320243_InitialCreate.resx">
+      <DependentUpon>201309190320243_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201309190332338_ActulizarNames.resx">
+      <DependentUpon>201309190332338_ActulizarNames.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
