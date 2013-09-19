@@ -1,30 +1,57 @@
 ﻿using PaganaSoft.BuscadorIO.Models;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PaganaSoft.BuscadorIO.ViewModels
 {
     public class DefaultViewModel : BindableBase
     {
-        public DefaultViewModel()
+        private FoundsCollection _foundslist = new FoundsCollection();
+        public FoundsCollection FoundsList
         {
-            DemoFile = new FoundFile()
-            {
-                LineNumber = 12,
-                ColumName = 25,
-                FileName = "nombre de ejemplo",
-                Text = "Este es el texto que debera de tener el archivo"
-            };
+            get { return _foundslist; }
+            set { SetProperty(ref _foundslist, value); }
         }
 
-        private FoundFile _demofile;
-        public FoundFile DemoFile
+
+        public DefaultViewModel()
         {
-            get { return _demofile; }
-            set { SetProperty(ref _demofile, value); }
+           
+        }
+
+        private ErrorsCollection _errorscollection = new ErrorsCollection();
+        public ErrorsCollection ErrorsCollection
+        {
+            get { return _errorscollection; }
+            set { SetProperty(ref _errorscollection, value); }
+        }
+
+
+        private List<FoundFile> _founds;
+        public List<FoundFile> Founds
+        {
+            get { return _founds; }
+            set { _founds = value; }
+        }
+
+
+        public void Search(string path, string sKey, bool? all = null)
+        {
+            FoundsList.Clear();
+            Searcher se = new Searcher();
+            se.Error += se_Error;
+
+            Founds = se.Search(path, sKey, all);            
+            foreach (var f in Founds)
+            {
+                FoundsList.Add(f);
+            }
+            
+        }
+
+        void se_Error(object sender, ErrorEventArgs e)
+        {
+            this.ErrorsCollection.Add(e);
+            //throw new Exception(e.Mensaje);
         }
 
     }
