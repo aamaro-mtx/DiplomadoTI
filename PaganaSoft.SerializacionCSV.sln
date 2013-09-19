@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.20623.1 VSUPREVIEW
+VisualStudioVersion = 12.0.20827.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaganaSoft.SerializacionCSV", "PaganaSoft.SerializacionCSV\PaganaSoft.SerializacionCSV.csproj", "{73034359-C7C3-4031-89A4-20377CDBD395}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaganaSoft.BuscadorIO", "PaganaSoft.BuscadorIO\PaganaSoft.BuscadorIO.csproj", "{5C8570E5-1719-4FBE-A9C6-11CEDC5739C2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaganaSoft.ORM", "PaganaSoft.ORM\PaganaSoft.ORM.csproj", "{9DA0780D-A1FE-4EB2-BF52-1E00D1FE038F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{5C8570E5-1719-4FBE-A9C6-11CEDC5739C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5C8570E5-1719-4FBE-A9C6-11CEDC5739C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5C8570E5-1719-4FBE-A9C6-11CEDC5739C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9DA0780D-A1FE-4EB2-BF52-1E00D1FE038F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9DA0780D-A1FE-4EB2-BF52-1E00D1FE038F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9DA0780D-A1FE-4EB2-BF52-1E00D1FE038F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9DA0780D-A1FE-4EB2-BF52-1E00D1FE038F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
