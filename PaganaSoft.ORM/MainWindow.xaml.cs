@@ -1,4 +1,5 @@
-﻿using PaganaSoft.ORM.Models.CodeFirst;
+﻿using PaganaSoft.ORM.Models;
+using PaganaSoft.ORM.Models.CodeFirst;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -46,6 +47,34 @@ namespace PaganaSoft.ORM
                 MessageBox.Show(ex.Message);
             }
 
+        }
+
+        private void MenuProductos_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void MenuCategorias_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void Btn_ImportarClick(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            using (var db = new NrtwdModelFirstCtx())
+            {
+
+            }
         }
     }
 }
